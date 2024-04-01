@@ -3,21 +3,15 @@
 import Goal from "@/components/Goal";
 import ThreeHeaders from "@/components/ThreeHeaders";
 import Image from "next/image";
-import { useScroll, animated } from '@react-spring/web'
-import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import { useEffect, useRef, useState } from "react";
 import useWindowScroll from "@/hooks/useWindowScroll";
 import useElementTopPosition from "@/hooks/useElementTopPosition";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
 export default function Challenge() {
     const containerRef = useRef<HTMLDivElement>(null)
     const windowScroll = useWindowScroll()
-    const { scrollYProgress } = useScroll()
     const top = useElementTopPosition(containerRef)
 
-
-    console.log("TOP", top)
     return (
         <section className="flex flex-col w-full gap-12 items-center relative" ref={containerRef}>
 

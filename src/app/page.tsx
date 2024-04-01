@@ -11,7 +11,6 @@ import Lock from "./home/Lock";
 import Commit from "./home/Commit";
 import End from "./home/End";
 import CTA from "./home/CTA";
-import { Parallax } from "@react-spring/parallax";
 import Challenge from "./home/Challenge copy 2";
 // import Challenge from "./home/Challenge copy";
 export default function Home() {

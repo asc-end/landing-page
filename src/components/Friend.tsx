@@ -2,12 +2,19 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function Friend({ animationPercentage, friend, mousePos, x, y, scale, parallax }: { animationPercentage: number, friend: string, mousePos?: { x: number, y: number }, x: number, y: number, scale: number, parallax: number }) {
-    const width = useMemo(() => typeof window !== "undefined" ? x * window.innerWidth / 2 : 0, [])
-    const height = useMemo(() => typeof window !== "undefined" ? y * window.innerHeight / 2 : 0, [])
-
+    const [width, setWidth] = useState(0)
+    const [height, setHeight] = useState(0)
+    const [windowHeight, setWindowHeight] = useState(0)
+    
+    useEffect(() => {
+        if(typeof window == "undefined") return
+        setHeight(y * window.innerHeight / 2)
+        setWidth(x * window.innerWidth / 2)
+        setWindowHeight(window.innerHeight)
+    }, [])
 
     const variants = {
         explode: {
@@ -54,7 +61,7 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
                 left: '50%',
                 filter: `blur(${interpolate(scale)}px)`,
                 x: width,
-                y: height - (parallax  * scale) + window.innerHeight,
+                y: height - (parallax  * scale) + windowHeight,
                 scale: scale
                 // y: height - parallax * scale,
                 // zIndex: scale
@@ -68,7 +75,7 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
             transition={{ type: 'spring', duration: 1, bounce: 0 }}
         >
             <motion.div style={{
-                transform: `translateY(${- parallax * scale - (window.innerHeight / 3.5)}px)`
+                transform: `translateY(${- parallax * scale - (windowHeight / 3.5)}px)`
             }}>
                 <Image src={`/friends/${friend}.png`} alt="pfp" width={100} height={100} className="rounded-full" />
             </motion.div>

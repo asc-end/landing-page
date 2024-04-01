@@ -1,3 +1,4 @@
+"use client"
 import { useState, useEffect } from 'react';
 
 const useElementTopPosition = (ref:any) => {
@@ -11,6 +12,8 @@ const useElementTopPosition = (ref:any) => {
   };
 
   useEffect(() => {
+    console.log(window)
+    if(typeof window == "undefined") return
     calculateTopPosition();
     window.addEventListener('resize', calculateTopPosition);
     return () => {
