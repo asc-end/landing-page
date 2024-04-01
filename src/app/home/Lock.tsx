@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Lock() {
     return (
-        <section className="flex flex-col w-full gap-12 h-[600px] items-center relative ">
+        <section className="section flex-col h-[600px] ">
             <div className="flex-1">
                 <ThreeHeaders title="Stake to hold yourself accountable." subTitle="Stake" paragraph="" align="center" gradient="bg-gradient-to-tr from-[#8D47FF] to-[#fbf5ff] bg-clip-text text-transparent" />
             </div>

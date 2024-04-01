@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Hero() {
     return (
-        <section className="flex flex-row w-full gap-12 h-screen px-60">
+        <section className="section flex-row  h-screen">
             <div className="flex-1">
                 <ThreeHeaders title="Transform your life, one SOL at a time!" subTitle="Ascend" paragraph="Build good habits in a fun and social way while insure you get punished if you don't commit" gradient="bg-gradient-to-tr from-[#8D47FF] to-[#B86CF4] bg-clip-text text-transparent" />
             </div>

@@ -13,7 +13,7 @@ export default function Challenge() {
     const top = useElementTopPosition(containerRef)
 
     return (
-        <section className="flex flex-col w-full gap-12 items-center relative" ref={containerRef}>
+        <section className="section flex-col" ref={containerRef}>
 
             <div className="">
                 <ThreeHeaders title="Define your goal" subTitle="Set your challenge" paragraph="Chose from challenges library and connect relevant apps" align="center" gradient="bg-gradient-to-tr from-[#8D47FF] to-[#B86CF4] bg-clip-text text-transparent" />

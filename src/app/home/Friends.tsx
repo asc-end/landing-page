@@ -65,7 +65,7 @@ export default function Friends() {
     }, [windowScroll])
 
     return (
-        <section className="flex flex-col w-full gap-12 py-44 items-center justify-center relative overflow-visible px-60" ref={containerRef}>
+        <section className="section py-44 items-center overflow-visible" ref={containerRef}>
             <ThreeHeaders title="You can even invite your friends" subTitle="Set your challenge" paragraph="You can invite your friends, share your progress and see the feed of your friends's chalenges. " align="center" gradient="bg-gradient-to-tr from-[#8D47FF] to-[#B86CF4] bg-clip-text text-transparent" />
 
             {sortedFriends.map(friend =>

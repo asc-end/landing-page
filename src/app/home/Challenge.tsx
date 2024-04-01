@@ -1,6 +1,5 @@
 "use client"
 
-import Goal from "@/components/Goal";
 import ThreeHeaders from "@/components/ThreeHeaders";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -15,7 +14,7 @@ export default function Challenge() {
 
     console.log("TOP", top)
     return (
-        <section className="flex flex-row w-full gap-12 h-screen items-center relative" ref={containerRef}>
+        <section className="section flex-row" ref={containerRef}>
             {/* <Parallax pages={1} style={{ top: '0', left: '0', bottom: "0", right: "0", position: "absolute" }}>
 
                 <ParallaxLayer offset={0} speed={2} className="relative bg-green-200/20">

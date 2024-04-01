@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function End() {
     return (
-        <section className="flex flex-row flex-wrap w-full gap-12 items-center px-60">
+        <section className="section flex-row flex-wrap">
             <div className="flex flex-row flex-1 items-start hover:opacity-70 opacity-100 transition-opacity min-w-[500px] ">
                 <Image src="/chad.png" alt="chad image" width={260} height={260} className="bg-black rounded-full -ml-20 flex-1"/>
                 <ThreeHeaders title="Withdraw" subTitle="Win" paragraph="Once you validated each days of your challenge, you’ll be able to take back your money." align="end" className="w-[344px]" gradient="bg-gradient-to-tr from-[#8D47FF] to-[#B86CF4] bg-clip-text text-transparent"/>
