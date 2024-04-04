@@ -43,6 +43,6 @@ body {
   }
 
   .section{
-    @apply flex w-full gap-12 items-center px-1 sm:px-3 lg:px-32 xl:px-60 relative justify-center
+    @apply flex w-full gap-12 items-center px-3 sm:px-6 lg:px-32 xl:px-60 relative justify-center
   }
 }

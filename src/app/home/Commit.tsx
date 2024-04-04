@@ -14,7 +14,7 @@ export default function Commit() {
         <section className="section flex-row" ref={containerRef}>
             <div className="flex-1 h-[500px] flex items-center justify-center">
                 {containerRef.current && <div className="bg-[#00001EC2] rounded-lg backdrop-blur-lg p-4"
-                    style={{ transform: `translateY(${-((windowScroll.y - top + (containerRef.current.getBoundingClientRect().height / 2)) / 3)}px)` }}
+                    style={{ transform: `translateY(${-((windowScroll.y - top - (containerRef.current.getBoundingClientRect().height / 2)) / 3)}px)` }}
                 >
                     <Image src="/calendar.png" alt="calendar" width={400} height={400} />
                 </div>}

@@ -60,8 +60,10 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
                 top: '50%',
                 left: '50%',
                 filter: `blur(${interpolate(scale)}px)`,
+                // transform: `translateY(${- parallax * scale - (windowHeight / 3.5)}px)`,
+
                 x: width,
-                y: height - (parallax  * scale) + windowHeight,
+                y: height - (parallax  *  scale /2),
                 scale: scale
                 // y: height - parallax * scale,
                 // zIndex: scale
@@ -74,11 +76,11 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
             animate={animationPercentage > 0 ? "explode" : "initial"}
             transition={{ type: 'spring', duration: 1, bounce: 0 }}
         >
-            <motion.div style={{
+            {/* <motion.div style={{
                 transform: `translateY(${- parallax * scale - (windowHeight / 3.5)}px)`
-            }}>
-                <Image src={`/friends/${friend}.png`} alt="pfp" width={100} height={100} className="rounded-full" />
-            </motion.div>
+            }}> */}
+                <Image src={`/friends/${friend}.png`} alt="pfp" width={100} height={100} className="rounded-full w-10 lg:w-24 h-10 lg:h-24 " />
+            {/* </motion.div> */}
         </motion.div>
     );
 }
