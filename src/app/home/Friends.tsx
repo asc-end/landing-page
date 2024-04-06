@@ -2,8 +2,8 @@
 
 import Friend from "@/components/Friend";
 import ThreeHeaders from "@/components/ThreeHeaders";
-import useElementTopPosition from "@/hooks/useElementTopPosition";
-import useWindowScroll from "@/hooks/useWindowScroll";
+import useElementRect from "@/hooks/useElementRect";
+import { useWindowScroll } from "@/hooks/useWindowScroll";
 // import useElementTopPosition from "@/hooks/useElementTopPosition";
 // import useWindowScroll from "@/hooks/useWindowScroll";
 import Image from "next/image";
@@ -12,10 +12,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 export default function Friends() {
     const containerRef = useRef<HTMLDivElement>(null)
-    const windowScroll = useWindowScroll()
+    const [scroll, scrollTo] = useWindowScroll()
     const [animationPercentage, setAnimationPercentage] = useState(0)
-    const top = useElementTopPosition(containerRef)
-    const rect = useMemo(() => containerRef.current?.getBoundingClientRect(), [])
+    const {top, height} = useElementRect(containerRef)
+    // const rect = useMemo(() => containerRef.current ? containerRef.current.getBoundingClientRect() : undefined, [containerRef])
 
     const friends = useMemo(() => [
         { "name": "user1", scale: 1.32, "x": 0.43, "y": 0.61 },
@@ -62,7 +62,26 @@ export default function Friends() {
         else
             percentage = Math.max(0, Math.min(100, Math.abs(pos * 100)));
         setAnimationPercentage(percentage)
-    }, [windowScroll])
+    }, [scroll])
+
+    // const parallax = useMemo(() => (scroll.y - top + (height ? (height / 2) : 0)), [top, height, scroll])
+
+    const parallax = useMemo(() => {
+        if (typeof window === 'undefined' || !containerRef.current) return 0
+        // const viewportHeight = window.innerHeight;
+    
+        // console.log("SCROLLL", containerRef.current.getBoundingClientRect().top, scroll.y)
+        // // Calculate how far the element is through its scroll (0 = just entering at bottom, 1 = just exiting at top)
+        // const scrollProgress = (scroll.y - containerRef.current?.getBoundingClientRect().top + viewportHeight / 2);
+        // // const scrollProgress = (scroll.y - rect.top + viewportHeight / 2) / (viewportHeight + rect.height);
+        
+        // console.log("SCROLL PROGRESS", scrollProgress)
+        // // Scale scroll progress to be -0.5 at the bottom of the viewport, 0 in the middle, and +0.5 at the top.
+        // // Scale further by desired parallax speed (here, 1/3)
+        // const translateY = scrollProgress;
+        
+        return - containerRef.current.getBoundingClientRect().top 
+    }, [scroll]);
 
     return (
         <section className="section py-20  lg:py-44 items-center overflow-visible" ref={containerRef}>
@@ -71,7 +90,7 @@ export default function Friends() {
             {sortedFriends.map(friend =>
                 <Friend friend={friend.name} animationPercentage={animationPercentage} key={friend.name} {...friend} 
                 // parallax={0}
-                parallax={windowScroll.y - top + (rect?.height ? (rect.height / 2) : 0)}
+                parallax={parallax}
                 />
             )}
         </section>

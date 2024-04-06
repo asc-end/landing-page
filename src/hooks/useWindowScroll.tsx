@@ -1,25 +1,42 @@
-"use client"
+import { useEffect, useState } from 'react';
+import { useWindowEvent } from './useWindowEvent';
 
-import { useState, useEffect } from 'react';
-import * as React from 'react';
-const useWindowScroll = () => {
-  const [scrollPosition, setScrollPosition] = useState({ x: 0, y: 0 });
+interface ScrollPosition {
+  x: number;
+  y: number;
+}
 
-  const handleScroll = () => {
-    if(typeof window == "undefined") return
-    setScrollPosition({ x: window?.scrollX, y: window?.scrollY });
-  };
+function getScrollPosition(): ScrollPosition {
+  return typeof window !== 'undefined'
+    ? { x: window.pageXOffset, y: window.pageYOffset }
+    : { x: 0, y: 0 };
+}
+
+function scrollTo({ x, y }: Partial<ScrollPosition>) {
+  if (typeof window !== 'undefined') {
+    const scrollOptions: ScrollToOptions = { behavior: 'smooth' };
+
+    if (typeof x === 'number') {
+      scrollOptions.left = x;
+    }
+
+    if (typeof y === 'number') {
+      scrollOptions.top = y;
+    }
+
+    window.scrollTo(scrollOptions);
+  }
+}
+
+export function useWindowScroll() {
+  const [position, setPosition] = useState<ScrollPosition>({ x: 0, y: 0 });
+
+  useWindowEvent('scroll', () => setPosition(getScrollPosition()));
+  useWindowEvent('resize', () => setPosition(getScrollPosition()));
 
   useEffect(() => {
-    if(typeof window == "undefined") return
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    setPosition(getScrollPosition());
   }, []);
 
-  return scrollPosition;
-};
-
-export default useWindowScroll;
+  return [position, scrollTo] as const;
+}

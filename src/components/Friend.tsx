@@ -9,11 +9,19 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
     const [height, setHeight] = useState(0)
     const [windowHeight, setWindowHeight] = useState(0)
     
-    useEffect(() => {
-        if(typeof window == "undefined") return
+    function setPlace(){
         setHeight(y * window.innerHeight / 2)
         setWidth(x * window.innerWidth / 2)
         setWindowHeight(window.innerHeight)
+    }
+
+    useEffect(() => {
+        if(typeof window == "undefined") return
+        setPlace()
+        window.addEventListener('resize', setPlace)
+        return () => {
+            window.removeEventListener('resize', setPlace);
+          }
     }, [])
 
     const variants = {
@@ -47,8 +55,11 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
             return maxPx - ((x - 0.5) / (1.5 - 0.5)) * (maxPx - 0);
         }
     }
+
+    console.log(parallax)
     // 0.5 -> 10
     // 1.5 => 0
+    const zindex = (scale - 1) * 10
     return (
         // <AnimatePresence>
         <motion.div
@@ -63,8 +74,9 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
                 // transform: `translateY(${- parallax * scale - (windowHeight / 3.5)}px)`,
 
                 x: width,
-                y: height - (parallax  *  scale /2),
-                scale: scale
+                y: height - (parallax  *  scale / 4),
+                scale: scale,
+                zIndex: zindex
                 // y: height - parallax * scale,
                 // zIndex: scale
             }}
@@ -73,14 +85,11 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
                 scale: scale + 0.4,
                 transition: { duration: 0.3 },
             }}
-            animate={animationPercentage > 0 ? "explode" : "initial"}
-            transition={{ type: 'spring', duration: 1, bounce: 0 }}
+            // animate={animationPercentage > 0 ? "explode" : "initial"}
+            // transition={{ type: 'spring', duration: 1, bounce: 0 }}
         >
-            {/* <motion.div style={{
-                transform: `translateY(${- parallax * scale - (windowHeight / 3.5)}px)`
-            }}> */}
+
                 <Image src={`/friends/${friend}.png`} alt="pfp" width={100} height={100} className="rounded-full w-10 lg:w-24 h-10 lg:h-24 " />
-            {/* </motion.div> */}
         </motion.div>
     );
 }

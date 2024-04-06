@@ -28,14 +28,14 @@ export default function Home() {
         <Hero />
         <Numbers />
         <Challenge />
-        <Witness />
+        {/* <Witness /> */}
         <Friends />
         <Lock />
         <Commit />
         <End />
         <CTA />
       </div>
-      <footer className="flex flex-row justify-between w-full h-20 px-12 items-center">
+      <footer className="flex flex-row justify-between w-full h-20 px-3 md:px-4 lg:px-10 xl:px-12 items-center">
         <div>
           Ascend
         </div>

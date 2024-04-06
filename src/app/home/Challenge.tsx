@@ -4,7 +4,7 @@ import ThreeHeaders from "@/components/ThreeHeaders";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import useWindowScroll from "@/hooks/useWindowScroll";
-import useElementTopPosition from "@/hooks/useElementTopPosition";
+import useElementTopPosition from "@/hooks/useElementRect";
 
 export default function Challenge() {
     const containerRef = useRef<HTMLDivElement>(null)
