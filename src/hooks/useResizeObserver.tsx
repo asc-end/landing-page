@@ -25,10 +25,8 @@ export function useResizeObserver<T extends HTMLElement = any>(options?: ResizeO
         ? new ResizeObserver((entries: any) => {
             const entry = entries[0];
 
-            console.log(entry)
             if (entry) {
               cancelAnimationFrame(frameID.current);
-              console.log("RECTTT", entry.contentRect)
 
               frameID.current = requestAnimationFrame(() => {
                 if (ref.current) {

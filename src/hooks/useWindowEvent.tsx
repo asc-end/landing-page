@@ -8,6 +8,7 @@ export function useWindowEvent<K extends string>(
   options?: boolean | AddEventListenerOptions
 ) {
   useEffect(() => {
+    if(typeof window == "undefined") return
     window.addEventListener(type as any, listener, options);
     return () => window.removeEventListener(type as any, listener, options);
   }, [type, listener]);

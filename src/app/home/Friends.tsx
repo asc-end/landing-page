@@ -2,20 +2,13 @@
 
 import Friend from "@/components/Friend";
 import ThreeHeaders from "@/components/ThreeHeaders";
-import useElementRect from "@/hooks/useElementRect";
 import { useWindowScroll } from "@/hooks/useWindowScroll";
-// import useElementTopPosition from "@/hooks/useElementTopPosition";
-// import useWindowScroll from "@/hooks/useWindowScroll";
-import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
-
 
 export default function Friends() {
     const containerRef = useRef<HTMLDivElement>(null)
     const [scroll, scrollTo] = useWindowScroll()
     const [animationPercentage, setAnimationPercentage] = useState(0)
-    const { top, height } = useElementRect(containerRef)
-    // const rect = useMemo(() => containerRef.current ? containerRef.current.getBoundingClientRect() : undefined, [containerRef])
 
     const friends = useMemo(() => [
         { "name": "user1", scale: 1.32, "x": 0.43, "y": 0.361 },
@@ -50,6 +43,7 @@ export default function Friends() {
         { "name": "swaggy_marie", scale: 1.3, "x": -0.750, "y": 0.0250 },
         { "name": "toly", scale: 1.5, "x": 0.500, "y": -0.4500 },
         { "name": "tristan", scale: 1.4, "x": 0.400, "y": 0.730 }], [])
+
     const sortedFriends = useMemo(() => friends.sort((a, b) => a.scale - b.scale), [friends])
 
     useEffect(() => {
@@ -64,7 +58,6 @@ export default function Friends() {
         setAnimationPercentage(percentage)
     }, [scroll])
 
-    // const parallax = useMemo(() => (scroll.y - top + (height ? (height / 2) : 0)), [top, height, scroll])
 
     const parallax = useMemo(() => {
         if (typeof window === 'undefined' || !containerRef.current) return 0
@@ -73,11 +66,14 @@ export default function Friends() {
 
     return (
         <section className="section py-20  lg:py-44 items-center overflow-visible relative" ref={containerRef}>
-            <ThreeHeaders title="You can even invite your friends" subTitle="Set your challenge" paragraph="You can invite your friends, share your progress and see the feed of your friends's chalenges. " align="center" gradient="bg-gradient-to-tr from-[#8D47FF] to-[#B86CF4] bg-clip-text text-transparent" />
-
+            <ThreeHeaders 
+                title="You can even invite your friends"
+                subTitle="Set your challenge"
+                paragraph="You can invite your friends, share your progress and see the feed of your friends's chalenges."
+                align="center"
+                gradient="bg-gradient-to-tr from-[#8D47FF] to-[#B86CF4] bg-clip-text text-transparent" />
             {sortedFriends.map(friend =>
                 <Friend friend={friend.name} animationPercentage={animationPercentage} key={friend.name} {...friend}
-                    // parallax={0}
                     parallax={parallax}
                 />
             )}
