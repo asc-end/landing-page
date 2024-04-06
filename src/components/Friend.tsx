@@ -89,7 +89,7 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
             // transition={{ type: 'spring', duration: 1, bounce: 0 }}
         >
 
-                <Image src={`/friends/${friend}.png`} alt="pfp" width={100} height={100} className="rounded-full w-10 lg:w-24 h-10 lg:h-24 " />
+                <Image src={`/friends/${friend}.png`} alt="pfp" width={100} height={100} className="rounded-full w-10 md:w-14 lg:w-20 h-10 md:h-14 lg:h-20 " />
         </motion.div>
     );
 }
