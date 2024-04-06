@@ -24,26 +24,26 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
           }
     }, [])
 
-    const variants = {
-        explode: {
-            scale: scale,
-            x: width,
-            y: height,
-            zIndex: scale,
-            opacity: 1,
-            transition: {
-                duration: 0.9,
-                // repeat: Infinity
-            },
-        },
-        initial: {
-            scale: 0,
-            opacity: 0,
-            x: 0,
-            y: 0,
+    // const variants = {
+    //     explode: {
+    //         scale: scale,
+    //         x: width,
+    //         y: height,
+    //         zIndex: scale,
+    //         opacity: 1,
+    //         transition: {
+    //             duration: 0.9,
+    //             // repeat: Infinity
+    //         },
+    //     },
+    //     initial: {
+    //         scale: 0,
+    //         opacity: 0,
+    //         x: 0,
+    //         y: 0,
 
-        },
-    }
+    //     },
+    // }
     function interpolate(x: number) {
         const maxPx = 2
         if (x <= 0.5) {
@@ -70,7 +70,7 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
-                filter: `blur(${interpolate(scale)}px)`,
+                // filter: `blur(${interpolate(scale)}px)`,
                 // transform: `translateY(${- parallax * scale - (windowHeight / 3.5)}px)`,
 
                 x: width,
