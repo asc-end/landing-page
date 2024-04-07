@@ -3,13 +3,18 @@ import Image from "next/image";
 
 export default function Lock() {
     return (
-        <section className="section flex-col py-20 lg:py-32">
+        <section className="section flex-col py-20 lg:py-56 ">
             <div className="flex-1">
-                <ThreeHeaders title="Stake to hold yourself accountable." subTitle="Stake" paragraph="" align="center" gradient="bg-gradient-to-tr from-[#8D47FF] to-[#fbf5ff] bg-clip-text text-transparent" />
+                <ThreeHeaders title="Stake to hold yourself accountable." subTitle="Stake" paragraph="" align="center" gradient="bg-gradient-to-tr from-[#8D47FF] to-[#B86CF4] bg-clip-text text-transparent" />
             </div>
             <div className="flex-1"></div>
-            <Image src={"/lock.png"} alt="lock" width={2000} height={800} className=" absolute inset-0 w-screen -z-30 top-0 mt-40 lg:-mt-20 bottom-0 " />
-            <div className="absolute inset-0 w-screen -z-30 top-0 mt-40 lg:-mt-20 bottom-0 flex items-end justify-center">
+            <div className=" absolute inset-0 w-screen -z-30 top-0 bottom-0 flex items-center justify-center h-screen">
+                <Image src={"/lock_bg.png"} alt="lock" width={2000} height={800} className="blur-3xl opacity-50" />
+            </div>
+            <div className=" absolute inset-0 w-screen -z-30 top-0 bottom-0 flex items-center justify-center h-screen">
+                <Image src={"/lootbox.png"} alt="lootbox" width={700} height={300} className=" -mb-96 w-80 md:w-[400px] lg:w-[500px]" quality={100} />
+            </div>
+            {/* <div className="absolute inset-0 w-screen -z-30 top-0 mt-40 lg:-mt-20 bottom-0 flex items-end justify-center">
                 <div className="flex flex-row gap-20 bg-white/10 border border-white/10 rounded-lg p-12">
                     <div className="bg-white/10 border border-white/10 rounded-lg p-4 h-fit">
                         <h1 className="h-fit">******</h1>
@@ -38,7 +43,7 @@ export default function Lock() {
                     </div>
 
                 </div>
-            </div>
+            </div> */}
         </section>
     )
 }
