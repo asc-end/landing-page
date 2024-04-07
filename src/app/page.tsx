@@ -12,6 +12,7 @@ import Commit from "./home/Commit";
 import End from "./home/End";
 import CTA from "./home/CTA";
 import Challenge from "./home/Challenge copy 2";
+import Link from "next/link";
 // import Challenge from "./home/Challenge copy";
 export default function Home() {
   return (
@@ -40,8 +41,8 @@ export default function Home() {
           Ascend
         </div>
         <div className="flex flex-row gap-4">
-          <p>Twitter</p>
-          <p>Discord</p>
+          <Link href='https://twitter.com/ascend_sh' target="_blank">Twitter</Link>
+          <Link href='https://discord.gg/9sDSGH2N' target="_blank">Discord</Link>
         </div>
       </footer>
     </main>
