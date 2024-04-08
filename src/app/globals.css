@@ -3,27 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 30;
-    --background-end-rgb: 0, 0, 40;
-  }
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 30;
+  --background-end-rgb: 0, 0, 40;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
@@ -31,18 +18,17 @@ body {
     text-wrap: balance;
   }
 
-  h1{
-    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-bold ;
+  h1 {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-bold;
   }
-  h2{
-    @apply uppercase text-lg lg:text-xl
+  h2 {
+    @apply uppercase text-lg lg:text-xl;
   }
   p {
-  @apply opacity-70
-  
+    @apply opacity-70;
   }
 
-  .section{
-    @apply flex w-full gap-12 items-center px-3 sm:px-6 lg:px-32 xl:px-60 relative justify-center
+  .section {
+    @apply flex w-full gap-12 items-center px-3 sm:px-6 lg:px-32 xl:px-60 relative justify-center;
   }
 }
