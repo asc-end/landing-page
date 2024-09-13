@@ -13,7 +13,6 @@ export default function Challenge() {
 
     const { top } = useElementRect(containerRef)
 
-    console.log("TOP", top)
     return (
         <section className="section flex-row" ref={containerRef}>
             {/* <Parallax pages={1} style={{ top: '0', left: '0', bottom: "0", right: "0", position: "absolute" }}>

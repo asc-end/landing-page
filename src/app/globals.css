@@ -24,11 +24,30 @@ body {
   h2 {
     @apply uppercase text-lg lg:text-xl;
   }
-  p {
-    @apply opacity-70;
+
+  /* ##B2B2BC */
+  p, li {
+    @apply text-gray-400;
+  }
+
+  strong {
+    @apply text-white;
   }
 
   .section {
     @apply flex w-full gap-12 items-center px-3 sm:px-6 lg:px-32 xl:px-60 relative justify-center;
   }
+
+::selection {
+  @apply bg-[#4326C4] text-white;
+}
+a {
+  @apply text-gray-400 hover:text-white transition-colors;
+}
+a[href^="mailto:"] {
+  @apply text-[#8358FB] hover:text-[#954DF0] transition-colors underline;
+}
+
+
+
 }
