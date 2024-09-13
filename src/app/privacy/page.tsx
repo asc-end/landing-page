@@ -11,7 +11,7 @@ export default function PrivacyPage() {
                     <h2 className="text-2xl font-bold mb-4">1. Informations We Collect</h2>
                     <ul className="list-disc list-inside">
                         <li className="mb-4">
-                            <strong>Wallet Address:</strong> To enable our app's functionality, we collect your Solana wallet address when you connect your crypto wallet.
+                            <strong>Wallet Address:</strong> To enable our app&apos;s functionality, we collect your Solana wallet address when you connect your crypto wallet.
                         </li>
                         <li className="mb-4">
                             <strong>Profile Information:</strong> Users may add a pseudonym, profile picture, and description, which can be deleted upon request.
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
                             </ul>
                         </li>
                         <li className="mb-4">
-                            <strong>Messages:</strong> We provide a messaging service and store all message data on our servers, messages aren't encrypted yet. At this time, we do not allow users to delete their message history.
+                            <strong>Messages:</strong> We provide a messaging service and store all message data on our servers, messages aren&apos;t encrypted yet. At this time, we do not allow users to delete their message history.
                         </li>
                     </ul>
                 </div>
@@ -34,7 +34,7 @@ export default function PrivacyPage() {
                     <h2 className="text-2xl font-bold mb-4">2. Data Sharing</h2>
                     <p className="mb-4">We do not share your personal information with third parties except as necessary to provide the services mentioned above. For example:</p>
                     <ul className="list-disc list-inside">
-                        <li className="mb-2">GitHub and Farcaster integrations involve interactions with those platforms' APIs.</li>
+                        <li className="mb-2">GitHub and Farcaster integrations involve interactions with those platforms&apos; APIs.</li>
                         <li className="mb-2">Your profile information may be shared with other users of the app as part of the user experience.</li>
                     </ul>
                 </div>
