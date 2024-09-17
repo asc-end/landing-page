@@ -12,7 +12,7 @@ export default function Hero() {
                     Join Discord
                 </a>
             </div>
-            <div className="flex-1 w-full -mb-20 md:mb-0 md:-mx-36 lg:-mx-36 lg:scale-125  bg-slate-500">
+            <div className="flex-1 w-full -mb-20 md:mb-0 md:-mx-36 lg:-mx-36 lg:scale-125">
                 <Image src="/shots.png" alt="phone mock up" width={1000} height={2000} className=" h-full object-cover" />
             </div>
             <div className="absolute inset-0 z-50 pointer-events-none">
