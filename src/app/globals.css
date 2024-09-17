@@ -35,7 +35,7 @@ body {
   }
 
   .section {
-    @apply flex w-full gap-12 items-center px-3 sm:px-6 lg:px-32 xl:px-60 relative justify-center;
+    @apply flex w-full gap-12 items-center px-6 sm:px-8 lg:px-32 xl:px-60 relative justify-center;
   }
 
 ::selection {
@@ -48,6 +48,7 @@ a[href^="mailto:"] {
   @apply text-[#8358FB] hover:text-[#954DF0] transition-colors underline;
 }
 
-
-
+  .simple-padding {
+    @apply px-3 sm:px-6 lg:px-8 xl:px-20 w-screen;
+  }
 }

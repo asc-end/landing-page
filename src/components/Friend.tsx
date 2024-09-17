@@ -9,6 +9,7 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
     const [width, setWidth] = useState(0)
     const [height, setHeight] = useState(0)
     const [windowHeight, setWindowHeight] = useState(0)
+    const [isExploded, setIsExploded] = useState(false)
 
     function setPlace() {
         if (typeof window == "undefined") return
@@ -22,16 +23,13 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
     useEffect(() => {
         setPlace()
     }, [])
-    function
-     interpolate(x: number) {
-        const maxPx = 2
-        if (x <= 0.5) {
-            return maxPx;
-        } else if (x >= 1.5) {
-            return 0;
-        } else {
-            // Calculate the interpolated value using linear interpolation formula
-            return maxPx - ((x - 0.5) / (1.5 - 0.5)) * (maxPx - 0);
+
+    const explosionVariants = {
+        initial: { scale: scale },
+        exploded: {
+            scale: scale * 2,
+            opacity: 0,
+            transition: { duration: 0.5, ease: "easeOut" }
         }
     }
 
@@ -44,17 +42,21 @@ export default function Friend({ animationPercentage, friend, mousePos, x, y, sc
                 left: '50%',
                 x: width,
                 y: height - (parallax * scale / 4),
-                scale: scale,
                 zIndex: (scale - 1) * 10
+                // zIndex: -30
             }}
-
-            whileHover={{
-                scale: scale + 0.4,
-                transition: { duration: 0.3 },
-            }}
+            variants={explosionVariants}
+            initial="initial"
+            animate={isExploded ? "exploded" : "initial"}
+            onClick={() => setIsExploded(true)}
         >
-
-            <Image src={`/friends/${friend}.png`} alt="pfp" width={100} height={100} className="rounded-full w-10 md:w-14 lg:w-20 h-10 md:h-14 lg:h-20 " />
+            <Image 
+                src={`/friends/${friend}.png`} 
+                alt="pfp" 
+                width={100} 
+                height={100} 
+                className="rounded-full w-10 md:w-14 lg:w-20 h-10 md:h-14 lg:h-20"
+            />
         </motion.div>
     );
 }

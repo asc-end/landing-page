@@ -16,7 +16,8 @@ import Link from "next/link";
 // import Challenge from "./home/Challenge copy";
 export default function Home() {
   return (
-      <div className=" w-full flex flex-col items-center gap-32 md:gap-48 lg:gap-60 xl:gap-72">
+      <div className=" w-full flex flex-col items-center">
+         {/* gap-32 md:gap-48 lg:gap-60 xl:gap-72"> */}
         <Hero />
         <Numbers />
         <Challenge />

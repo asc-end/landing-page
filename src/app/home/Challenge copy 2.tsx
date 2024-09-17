@@ -19,52 +19,41 @@ export default function Challenge() {
     }, [scroll]);
 
     return (
-        <section className="section flex-col" ref={containerRef}>
-
-            <div className="">
-                <ThreeHeaders title="Define your goal" subTitle="Set your challenge" paragraph="Chose from challenges library and connect relevant apps" align="center" gradient="bg-gradient-to-tr from-[#8D47FF] to-[#B86CF4] bg-clip-text text-transparent" />
+        <section className="section flex-col h-screen justify-center items-center" ref={containerRef}>
+            <div>
+                <ThreeHeaders
+                    title="Define your goal"
+                    subTitle="Set your challenge"
+                    paragraph="Choose from challenges library and connect relevant apps"
+                    align="center"
+                    gradient="bg-gradient-to-tr from-[#8D47FF] to-[#B86CF4] bg-clip-text text-transparent"
+                />
             </div>
+            {containerRef.current && (
+                <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 bg-[#2D0896]/20 rounded-lg border border-white/10 p-4 sm:p-6 lg:p-8">
+                    {[
+                        "flashcard", "github", "meditation", "twitter",
+                        "farcaster", "tiktok", "youtube"
+                    ].map((icon) => (
+                        <div key={icon} className="relative group">
+                            <Image
+                                src={`/challenges/${icon}.png`}
+                                className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 hover:scale-125 transition-transform"
+                                alt={icon}
+                                width={100}
+                                height={100}
+                            />
+                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-5 px-3 py-1 bg-gray-800/60 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                                {icon.charAt(0).toUpperCase() + icon.slice(1)}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
 
-
-
-            {containerRef.current && <div className="flex flex-row gap-8 items-center bg-[#2D0896]/20 rounded-lg border border-white/10 px-12 py-6"
-            // style={{ transform: `translateX(${parallax}px)` }}
-            >
-
-                <Image
-                    src="/challenges/flashcard.png"
-                    className=" hover:scale-125 transition-transform"
-                    alt="flashcard" width={100} height={100} />
-                <Image
-                    src="/challenges/github.png"
-                    className=" hover:scale-125 transition-transform"
-                    alt="github" width={100} height={100} />
-                <Image
-                    src="/challenges/meditation.png"
-                    className=" hover:scale-125 transition-transform"
-                    alt="meditation" width={100} height={100} />
-                <Image
-                    src="/challenges/twitter.png"
-                    className=" hover:scale-125 transition-transform"
-                    alt="twitter" width={100} height={100} />
-                <Image
-                    src="/challenges/farcaster.png"
-                    className=" hover:scale-125 transition-transform"
-                    alt="farcaster" width={100} height={100} />
-                <Image
-                    src="/challenges/tiktok.png"
-                    className=" hover:scale-125 transition-transform"
-                    alt="tiktok" width={100} height={100} />
-
-                <Image
-                    src="/challenges/youtube.png"
-                    className=" hover:scale-125 transition-transform"
-                    alt="youtube" width={100} height={100} />
+            <div className="absolute inset-0 -z-50">
+                <Image src="/blob2.png" alt="blob" width={2000} height={600} className=" object-contain w-full" />
             </div>
-            }
-
-            <Image src="/blob2.png" alt="blob" width={2000} height={1000} className="absolute inset-0 -z-50" />
-
         </section>
     )
 }

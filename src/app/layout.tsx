@@ -49,28 +49,49 @@ export default function RootLayout({
         />
       </head>
 
-      <body className={`${inter.className} px-1 sm:px-3 lg:px-8 xl:px-20 w-screen relative flex flex-col overflow-x-hidden`}>
-        <header  className="w-screen px-1 sm:px-3 lg:px-8 xl:px-20 flex flex-row justify-between items-center fixed top-0 left-0 h-20 bg-[#00001E30] backdrop-blur-lg z-50">
+      <body className={`${inter.className} relative flex flex-col overflow-x-hidden w-screen`}>
+        <header className="simple-padding flex flex-row justify-between items-center fixed top-0 left-0 h-20 bg-[#00001E30] backdrop-blur-lg z-50">
           <Link href="/" className="flex flex-row gap-1 md:gap-2 items-center">
             <Image src="/logo.png" alt="logo" width={60} height={60} className=" scale-75 md:scale-100" />
             <h3 className=" text-white font-semibold text-xl">Ascend.sh</h3>
           </Link>
           <div className="flex-1"></div>
-          <button className=" text-xs lg:text-base text-white bg-gradient-to-r from-[#6663FF] to-[#7F00FE] rounded-full px-3 md:px-6 py-1 md:py-2 hover:opacity-80 transition-opacity">Download app</button>
+          <div className="flex flex-row gap-2">
+
+            <div className="relative group">
+                <button
+                    className="text-xs lg:text-base text-white bg-gradient-to-r from-[#6663FF] to-[#7F00FE] rounded-full px-3 md:px-6 py-1 md:py-2 hover:opacity-80 transition-opacity cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+                    disabled
+                >
+                    Download App
+                </button>
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-1 bg-gray-800 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    Coming soon!
+                </div>
+            </div>
+            {/* <button className=" text-xs lg:text-base text-white bg-gradient-to-r from-[#6663FF] to-[#7F00FE] rounded-full px-3 md:px-6 py-1 md:py-2 hover:opacity-80 transition-opacity cursor-pointer">
+              Twitter
+            </button> */}
+          </div>
         </header>
-        <main className="flex min-h-screen flex-col w-full">
+        <main className="flex flex-col w-full">
           {children}
         </main>
-
-        <footer className="flex flex-row justify-between w-full h-20  items-center">
-          <div>
-            Ascend
+        <footer className="simple-padding py-8 flex flex-col justify-between items-start text-white">
+          <div className="flex flex-col sm:flex-row justify-between w-full items-center gap-4">
+            <p className="text-xl sm:text-2xl font-bold mb-4 sm:mb-0">Ascend</p>
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center sm:items-start">
+              <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6">
+                <a href="https://twitter.com/ascend_sh" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Twitter</a>
+                <a href="https://discord.gg/ymVPRnpuqC" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Discord</a>
+                <a href="https://warpcast.com/~/channel/ascend" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Farcaster</a>
+              </div>
+              <span className="hidden sm:inline text-white/20">|</span>
+              <a href="/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Privacy Policy</a>
+            </div>
           </div>
-          <div className="flex flex-row gap-4">
-            <Link href='https://twitter.com/ascend_sh' target="_blank">Twitter</Link>
-            <Link href='https://discord.gg/9sDSGH2N' target="_blank">Discord</Link>
-            <Link href='/privacy' target="_blank">Privacy Policy</Link>
-          </div>
+          <hr className="w-full border-t border-white/20 my-4 sm:my-6" />
+          <p className="text-gray-400 text-xs sm:text-sm mt-2 sm:mt-4 text-center w-full">© 2024 Ascend. All rights reserved.</p>
         </footer>
       </body>
 
