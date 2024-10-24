@@ -3,59 +3,70 @@
 import { useWindowEvent } from '@/hooks/useWindowEvent';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-export default function Friend({ animationPercentage, friend, mousePos, x, y, scale, parallax }: { animationPercentage: number, friend: string, mousePos?: { x: number, y: number }, x: number, y: number, scale: number, parallax: number }) {
-    const [width, setWidth] = useState(0)
-    const [height, setHeight] = useState(0)
-    const [windowHeight, setWindowHeight] = useState(0)
-    const [isExploded, setIsExploded] = useState(false)
+interface FriendProps {
+    animationPercentage: number;
+    friend: string;
+    x: number;
+    y: number;
+    scale: number;
+    parallax: number;
+}
 
-    function setPlace() {
-        if (typeof window == "undefined") return
-        setHeight(y * window.innerHeight / 2)
-        setWidth(x * window.innerWidth / 2)
-        setWindowHeight(window.innerHeight)
-    }
+export default function Friend(props: FriendProps) {
+    const { animationPercentage, friend, x, y, scale, parallax } = props
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    const [isExploded, setIsExploded] = useState(false);
 
-    useWindowEvent("resize", setPlace)
+    const updateDimensions = useCallback(() => {
+        if (typeof window === 'undefined') return;
+        setDimensions({
+            width: x * window.innerWidth / 2,
+            height: y * window.innerHeight / 2
+        });
+    }, [x, y]);
+
+    useWindowEvent('resize', updateDimensions);
 
     useEffect(() => {
-        setPlace()
-    }, [])
+        updateDimensions();
+    }, [updateDimensions]);
 
-    const explosionVariants = {
-        initial: { scale: scale },
-        exploded: {
-            scale: scale * 2,
-            opacity: 0,
-            transition: { duration: 0.5, ease: "easeOut" }
-        }
-    }
+
+    const [randomX, randomY] = useMemo(() => {
+        return [Math.random() * 100, Math.random() * 60]
+    }, [])
 
     return (
         <motion.div
-            className={`absolute mx-auto my-auto`}
+            className='w-10 md:w-14 lg:w-20 h-10 md:h-14 lg:h-20'
             style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                x: width,
-                y: height - (parallax * scale / 4),
-                zIndex: (scale - 1) * 10
-                // zIndex: -30
+                // position: 'absolute',
+                top: 0,
+                left: 0,
+                // top: '50%',
+                // left: '50%',
+                // x: randomX,
+                y: (parallax * -scale) + randomY ,
+                zIndex: (1 - scale) * 10
             }}
-            variants={explosionVariants}
+            // variants={explosionVariants}
             initial="initial"
             animate={isExploded ? "exploded" : "initial"}
             onClick={() => setIsExploded(true)}
         >
-            <Image 
-                src={`/friends/${friend}.png`} 
-                alt="pfp" 
-                width={100} 
-                height={100} 
-                className="rounded-full w-10 md:w-14 lg:w-20 h-10 md:h-14 lg:h-20"
+            <Image
+                src={`/friends/${friend}.png`}
+                alt={`${friend}'s profile picture`}
+                width={100}
+                height={100}
+                className="rounded-full object-contain cursor-pointer"
+                style={{
+                    transform: `scale(${scale})`,
+                    width: '100%',
+                    height: '100%'
+                }}
             />
         </motion.div>
     );

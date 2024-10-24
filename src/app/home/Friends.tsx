@@ -10,44 +10,39 @@ export default function Friends() {
     const [scroll, scrollTo] = useWindowScroll()
     const [animationPercentage, setAnimationPercentage] = useState(0)
 
-    const friends = useMemo(() => [
-        { "name": "user1", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user2", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user3", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user4", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user5", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user6", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user7", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user8", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user9", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user10", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user11", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user12", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user13", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user14", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user15", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user16", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user17", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user18", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user19", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user20", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user21", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "user22", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "armani", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "buffalu", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "fd_ripatel", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "fiskantes", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "mert", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "nicovrg", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "proph3t", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "swaggy_marie", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "toly", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 },
-        { "name": "tristan", scale: 1 + Math.random() * 0.5, "x": Math.random() * 2 - 1, "y": Math.random() * 2 - 1 }
-    ].map(friend => ({
-        ...friend,
-        initialY: friend.y,
-        initialScale: friend.scale
-    })), [])
+    function randomNormal(mean = 0, stdDev = 1) {
+        let u = 0, v = 0;
+        while (u === 0) u = Math.random(); // Converting [0,1) to (0,1)
+        while (v === 0) v = Math.random();
+        const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+        const skewedZ = z > 0 ? z * 1.5 : z * 0.5; // Skewing the distribution to have more values on the top
+        return mean + stdDev * skewedZ;
+    }
+
+    const perlinNoise = (x: number) => {
+        // Simple Perlin noise function approximation
+        return (Math.sin(x) + 1) / 2; // Normalize to [0, 1]
+    };
+
+    const friends = useMemo(() => {
+        const generateFriend = (name: string, index: number) => {
+            const yPosition = 1 - (index / friendNames.length);
+            const xPosition = Math.random();
+            const size = 6 + ((1 - yPosition) * 10); // Smaller at the top, larger at the bottom
+            const opacity = 0.5 + ((1 - yPosition) * 1); // More transparent at the top
+            const scale = size / 10; // Adjust scale based on size
+            return { name, x: xPosition, y: yPosition, scale, opacity, initialY: 0, initialScale: 1 };
+        };
+
+        const friendNames = [
+            "user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user9", "user10",
+            "user11", "user12", "user13", "user14", "user15", "user16", "user17", "user18", "user19", "user20",
+            "user21", "user22", "armani", "buffalu", "fd_ripatel", "fiskantes", "mert", "nicovrg", "proph3t",
+            "swaggy_marie", "toly", "tristan"
+        ];
+
+        return friendNames.map((name, index) => generateFriend(name, index));
+    }, []);
 
     const sortedFriends = useMemo(() => friends.sort((a, b) => a.scale - b.scale), [friends])
 
@@ -71,17 +66,45 @@ export default function Friends() {
 
     return (
         <section className="section py-64 pt-12 sm:py-64 md:py-64 lg:py-96 lg:pt-32 items-center overflow-visible relative" ref={containerRef}>
-            <ThreeHeaders 
-                title="You can even invite your friends"
-                subTitle="Set your challenge"
-                paragraph="You can invite your friends, share your progress and see the feed of your friends's chalenges."
-                align="center"
-                gradient="bg-gradient-to-tr from-[#8D47FF] to-[#B86CF4] bg-clip-text text-transparent" />
-            {sortedFriends.map(friend =>
-                <Friend friend={friend.name} animationPercentage={animationPercentage} key={friend.name} {...friend}
-                    parallax={parallax}
-                />
-            )}
+            <div className="p-3 rounded-md backdrop-blur-md">
+                <ThreeHeaders
+                    title="The more, the merrier"
+                    subTitle="Invite your friends"
+                    paragraph="You can invite your friends, share your progress and see the feed of your friends's chalenges."
+                    align="center"
+                    gradient="bg-gradient-to-tr from-[#8D47FF] to-[#B86CF4] bg-clip-text text-transparent" />
+            </div>
+
+            <div className="absolute inset-0 -z-40 flex items-center justify-center">
+                <div className="relative w-full h-full  lg:mx-24">
+                    {sortedFriends.map((friend, index) => {
+                        return (
+                            <div
+                                key={friend.name}
+                                className="absolute"
+                                style={{
+                                    left: `${friend.x * 100}%`,
+                                    bottom: `${friend.y * 100}%`,
+                                    // transform: `translate(-50%, 50%)`,
+                                    // width: `${friend.scale * 60}px`,
+                                    // height: `${friend.scale * 60}px`,
+                                    opacity: friend.opacity,
+                                }}
+                            >
+                                <Friend
+                                    friend={friend.name}
+                                    animationPercentage={0}
+                                    x={0}
+                                    y={0}
+                                    scale={friend.scale} // Adjust scale based on size
+                                    parallax={parallax}
+
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
         </section>
     )
 }

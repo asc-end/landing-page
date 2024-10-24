@@ -11,7 +11,7 @@ export default function ThreeHeaders({ title, subTitle, paragraph, align = "star
             return "text-left"
     }, [align])
     return (
-        <div className={`flex flex-col items-${align} justify-center h-full gap-8 ${className}`}>
+        <div className={`flex flex-col items-${align} justify-center h-full gap-6 ${className}`}>
             <h2 className={`${textAlign} ${gradient}`}>{subTitle}</h2>
             <div className="flex flex-col gap-3">
                 <h1 className={`${textAlign}`}>{title}</h1>
