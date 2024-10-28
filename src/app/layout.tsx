@@ -78,6 +78,7 @@ export default function RootLayout({
           {children}
         </main>
         <footer className="simple-padding py-8 flex flex-col justify-between items-start text-white">
+          <hr className="w-full border-t border-white/20 my-4 sm:my-6" />
           <div className="flex flex-col sm:flex-row justify-between w-full items-center gap-4">
             <p className="text-xl sm:text-2xl font-bold mb-4 sm:mb-0">Ascend</p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center sm:items-start">
@@ -90,7 +91,6 @@ export default function RootLayout({
               <a href="/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Privacy Policy</a>
             </div>
           </div>
-          <hr className="w-full border-t border-white/20 my-4 sm:my-6" />
           <p className="text-gray-400 text-xs sm:text-sm mt-2 sm:mt-4 text-center w-full">© 2024 Ascend. All rights reserved.</p>
         </footer>
       </body>

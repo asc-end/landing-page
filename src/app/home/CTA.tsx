@@ -1,4 +1,3 @@
-import { EmailInput } from "@/components/EmailInput";
 import { FaTwitter, FaDiscord, FaBroadcastTower, FaArchway } from 'react-icons/fa';
 
 export default function CTA() {
@@ -23,7 +22,6 @@ export default function CTA() {
                     </a>
                 </div>
                 </div>
-                {/* <EmailInput /> */}
             </div>
         </section>
     )
