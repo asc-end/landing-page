@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import ogImage from '../../public/og.jpg';
+import ogImage from '../../public/og2.png';
 import Link from "next/link";
 import Image from "next/image";
 
@@ -43,9 +43,15 @@ export default function RootLayout({
         <meta name="twitter:image:type" content="image/png" />
         <meta name="twitter:image:width" content="2056" />
         <meta name="twitter:image:height" content="936" />
+        <meta property="twitter:card" content="summary_large_image"/>
+        <meta property="twitter:title" content={metadata.title?.toString()}/>
+        <meta property="twitter:description" content={metadata.description!!}/>
+        <meta property="og:site_name" content={metadata.title?.toString()}/>
+        <meta property="og:description" content={metadata.description!!} />
+        <meta property="og:url" content="ascend.sh"/>
         <meta
           name="keywords"
-          content="solana, socials"
+          content="solana, socials, stake, crypto, accountability, friends"
         />
       </head>
 
@@ -59,15 +65,15 @@ export default function RootLayout({
           <div className="flex flex-row gap-2">
 
             <div className="relative group">
-                <button
-                    className="text-xs lg:text-base text-white bg-gradient-to-r from-[#6663FF] to-[#7F00FE] rounded-full px-3 md:px-6 py-1 md:py-2 hover:opacity-80 transition-opacity cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
-                    disabled
-                >
-                    Download App
-                </button>
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-1 bg-gray-800 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                    Coming soon!
-                </div>
+              <button
+                className="text-xs lg:text-base text-white bg-gradient-to-r from-[#6663FF] to-[#7F00FE] rounded-full px-3 md:px-6 py-1 md:py-2 hover:opacity-80 transition-opacity cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+                disabled
+              >
+                Download App
+              </button>
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-1 bg-gray-800 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                Coming soon!
+              </div>
             </div>
             {/* <button className=" text-xs lg:text-base text-white bg-gradient-to-r from-[#6663FF] to-[#7F00FE] rounded-full px-3 md:px-6 py-1 md:py-2 hover:opacity-80 transition-opacity cursor-pointer">
               Twitter
